@@ -2,8 +2,8 @@ import {useState} from "react"
 
 function Buy(props) {
     const [showSuccessLabel, setSuccess] = useState(false);
-    const [successStyle, setSuccessStyle] = useState({'color': 'green'});
-    const [errorStyle, setErrorStyle] = useState({'color': 'red'});
+    const successStyle = {'color': 'green'};
+    const errorStyle = {'color': 'red'};
 
     function buyProduct() {
         setSuccess(true)

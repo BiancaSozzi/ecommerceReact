@@ -1,49 +1,38 @@
-import React,{Component} from "react"
+import {useState} from "react"
 import Property from './Property'
 import Buy from './Buy'
 import DetailsBtn from './DetailsBtn'
 
-class Product extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            qtyAvailable: props.product.available
-        }
-        this.properties = ['sku', 'description', 'price']
-        this.fontStyles = {
-            fontWeight: 'bold'
-        }
-        this.marginStyles = {
-            margin: '20px'
-        }
-        this.successStyle = {
-            'color': 'green'
+function Product(props) {
+
+    const properties = ['sku', 'description', 'price']
+    const fontStyles = {
+        fontWeight: 'bold'
+    }
+    const marginStyles = {
+        margin: '20px'
+    }
+    const [qtyAvailable, setQtyAvailable] = useState(props.product.available)
+
+    function buyProduct() {
+        if (qtyAvailable > 0) {
+            setQtyAvailable(qtyAvailable - 1)
         }
     }
 
-    buyProduct = ()=>{
-        if (this.state.qtyAvailable > 0) {
-            this.setState({
-                qtyAvailable: this.state.qtyAvailable - 1
-            })
-        }
-    }
+    return (
+        <div style={marginStyles}>
+            <label style={fontStyles}>{props.product.name}</label>
 
-    render() {
-        return (
-            <div style={this.marginStyles}>
-                <label style={this.fontStyles}>{this.props.product.name}</label>
-
-                <div>
-                    {this.properties.map(prop => <Property label={prop} value={this.props.product[prop]}/>)}
-                </div>
-
-                <label style={this.fontStyles}>Available: </label> {this.state.qtyAvailable}
-                <Buy handler={this.buyProduct} qtyAvailable={this.state.qtyAvailable}/>
-                <DetailsBtn/>
+            <div>
+                {properties.map(prop => <Property label={prop} value={props.product[prop]}/>)}
             </div>
-        )
-    }
+
+            <label style={fontStyles}>Available: </label> {qtyAvailable}
+            <Buy handler={buyProduct} qtyAvailable={qtyAvailable}/>
+            <DetailsBtn/>
+        </div>
+    )
 }
 
 export default Product;
