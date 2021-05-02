@@ -5,16 +5,16 @@ function Buy(props) {
     const [successStyle, setSuccessStyle] = useState({'color': 'green'});
     const [errorStyle, setErrorStyle] = useState({'color': 'red'});
 
-    buyProduct(() => {
+    function buyProduct() {
         setSuccess(true)
         return props.handler()
-    })
+    }
 
     return (
         <div>
             <div>
                 {
-                    props.qtyAvailable > 0 &&
+                    props.qtyAvailable == 0 &&
                     <label style={errorStyle}> Lo sentimos! No hay mas stock</label>
                 }
             </div>
