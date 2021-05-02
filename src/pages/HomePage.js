@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import  Product from './Product';
+import  Product from '../components/products/Product';
 
 function Home() {
 
@@ -17,7 +17,10 @@ function Home() {
 
     return (
         <div>
-            <p hidden={!loading}>Loading ...</p>
+            {
+                loading &&
+                <p>Loading ...</p>
+            }
             {productsList.map(product => <Product product={product}/>)}
         </div>
     )

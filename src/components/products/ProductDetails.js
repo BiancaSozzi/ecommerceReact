@@ -1,9 +1,8 @@
 import {useState} from "react"
 import Property from './Property'
 import Buy from './Buy'
-import DetailsBtn from './DetailsBtn'
 
-function Product(props) {
+function ProductDetails(props) {
 
     const properties = ['sku', 'description', 'price']
     const fontStyles = {
@@ -11,6 +10,9 @@ function Product(props) {
     }
     const marginStyles = {
         margin: '20px'
+    }
+    const imgStyle = {
+        width: '200px'
     }
     const [qtyAvailable, setQtyAvailable] = useState(props.product.available)
 
@@ -22,6 +24,8 @@ function Product(props) {
 
     return (
         <div style={marginStyles}>
+
+            <img style={imgStyle} src={props.product.image}/>
             <label style={fontStyles}>{props.product.name}</label>
 
             <div>
@@ -30,9 +34,8 @@ function Product(props) {
 
             <label style={fontStyles}>Available: </label> {qtyAvailable}
             <Buy handler={buyProduct} qtyAvailable={qtyAvailable}/>
-            <DetailsBtn/>
         </div>
     )
 }
 
-export default Product;
+export default ProductDetails;

@@ -1,8 +1,10 @@
 import {BrowserRouter,Route} from "react-router-dom"
 import './App.css';
-import Home from './Home'
-import Login from './Login'
-import Menu from './Menu'
+import Details from './pages/DetailsPage'
+import Home from './pages/HomePage'
+import Login from './pages/LoginPage'
+import Menu from './components/Menu'
+import Register from './pages/RegisterPage'
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
         <Menu />
         <Route path="/" component={Home} exact />
         <Route path="/login" component={Login} exact />
+        <Route path="/register" component={Register} exact/>
+        <Route path="/products/:id" component={Details} exact />
     </BrowserRouter>
   );
 }
