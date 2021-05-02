@@ -1,10 +1,8 @@
-import { useState } from 'react';
-
 function DetailsBtn() {
 
-    const [marginStyle, setMarginStyle] = useState({
+    const marginStyle = {
         margin: '10px'
-    })
+    }
 
     return (
         <div>

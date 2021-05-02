@@ -14,7 +14,7 @@ function Buy(props) {
         <div>
             <div>
                 {
-                    props.qtyAvailable == 0 &&
+                    props.qtyAvailable === 0 &&
                     <label style={errorStyle}> Lo sentimos! No hay mas stock</label>
                 }
             </div>
