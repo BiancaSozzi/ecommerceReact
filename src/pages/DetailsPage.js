@@ -11,7 +11,7 @@ function Details(props) {
     useEffect(() => {
         getProduct(productId)
         .then(data => {
-            setProduct(data)
+            setProduct(data.data)
             setLoading(false)
         })
     }, [])

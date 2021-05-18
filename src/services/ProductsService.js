@@ -1,11 +1,9 @@
-import {productsEndpoint} from '../config/config'
+import axiosInstance from '../config/axios'
 
 export function getProducts() {
-    return fetch(productsEndpoint + "products")
-    .then(res => res.json())
+    return axiosInstance.get("products")
 }
 
 export function getProduct(productId) {
-    return fetch(productsEndpoint + "products/" + productId)
-    .then(res => res.json())
+    return axiosInstance.get("products/" + productId)
 }

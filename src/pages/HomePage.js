@@ -10,7 +10,7 @@ function Home() {
     useEffect(() => {
         getProducts()
         .then(data => {
-            setProducts(data)
+            setProducts(data.data)
             setLoading(false)
         })
     }, [])
