@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState} from 'react'
 import Property from './Property'
 import Buy from './Buy'
 
