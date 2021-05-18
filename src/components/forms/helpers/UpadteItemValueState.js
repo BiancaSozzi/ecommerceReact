@@ -1,4 +1,4 @@
-function handleFormItemChange(items, label, newValue) {
+export function handleFormItemChange(items, label, newValue) {
     const updatedForm = items.map(item => {
         if (item.label === label) {
             const updatedItem = {
@@ -11,5 +11,3 @@ function handleFormItemChange(items, label, newValue) {
     })
     return updatedForm;
 }
-
-export default handleFormItemChange;

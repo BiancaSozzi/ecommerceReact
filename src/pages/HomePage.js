@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import  Product from '../components/products/Product';
+import {getProducts} from '../services/ProductsService';
 
 function Home() {
 
@@ -7,8 +8,7 @@ function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("https://my-json-server.typicode.com/BiancaSozzi/catalogoAngular/products")
-        .then(res => res.json())
+        getProducts()
         .then(data => {
             setProducts(data)
             setLoading(false)

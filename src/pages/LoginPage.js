@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import FormItem from '../components/forms/FormItem'
-import handleFormItemChange from '../components/forms/helpers/UpadteItemValueState'
+import {handleFormItemChange} from '../components/forms/helpers/UpadteItemValueState'
 import {Link} from "react-router-dom"
 
 function Login() {
