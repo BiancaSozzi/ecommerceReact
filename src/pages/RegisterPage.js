@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import FormItem from '../components/forms/FormItem'
 import {handleFormItemChange} from '../components/forms/helpers/UpadteItemValueState'
+import firebase from '../config/firebase'
 
 function Register() {
 
@@ -46,10 +47,36 @@ function Register() {
         setFormItems(updatedForm)
     }
 
+    const getItemByLabel = (label) => {
+        return formItems.filter(item => item.label === label)[0].value
+    }
+
     const register = (event) => {
         event.preventDefault()
-        console.log(formItems)
-        alert("You are registered")
+        const email = getItemByLabel('Email')
+        const password = getItemByLabel('Password')
+
+        firebase.auth.createUserWithEmailAndPassword(email, password)
+        .then(data => {
+            firebase.db.collection("users").add({
+                name: getItemByLabel('Nombre'),
+                lastName: getItemByLabel('Apellido'),
+                email: email,
+                phone: getItemByLabel('Telefono'),
+                userId: data.user.uid
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => {
+                console.log("Error: ", error)
+            })
+        })
+        .catch(error => {
+            console.log("Error: ", error)
+            alert("Error: " + error.message)
+        })
+
     }
 
     return (
