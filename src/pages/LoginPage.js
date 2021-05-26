@@ -3,8 +3,8 @@ import FormItem from '../components/forms/FormItem'
 import {handleFormItemChange} from '../components/forms/helpers/UpadteItemValueState'
 import {getItemByLabel} from '..//components/forms/helpers/GetItemByLabel'
 import {Link, useHistory} from "react-router-dom"
-import firebase from '../config/firebase'
 import ButtonWithLoading from "../components/forms/ButtonWithLoading"
+import {loginWithEmailAndPassword} from '../services/UsersService'
 import {Container, Row} from 'react-bootstrap'
 
 function Login() {
@@ -37,9 +37,8 @@ function Login() {
         const email = getItemByLabel(formItems, 'Email')
         const pass = getItemByLabel(formItems, 'Password')
 
-        firebase.auth.signInWithEmailAndPassword(email, pass)
+        loginWithEmailAndPassword(email, pass)
         .then(data => {
-            console.log("Log in", data)
             history.push('/')
             setLoading(false)
         })

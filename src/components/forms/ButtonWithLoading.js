@@ -1,7 +1,7 @@
 import {Button, Spinner} from 'react-bootstrap'
 
 function ButtonWithLoading(props){
-    const {variant,type,loading,text} = props
+    const {variant,type,loading} = props
     return (
         <Button
             type={type || "submit"}

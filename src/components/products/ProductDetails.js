@@ -29,7 +29,7 @@ function ProductDetails(props) {
     return (
         <div style={marginStyles}>
 
-            <img style={imgStyle} src={props.product.image}/>
+            <img style={imgStyle} src={props.product.image} alt="Product"/>
             <label style={fontStyles}>{props.product.name}</label>
 
             <div>

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import firebase from '../config/firebase'
 import {createProduct, updateProduct, deleteProduct} from '../services/ProductsService'
 import {useHistory} from "react-router-dom"
 
@@ -9,16 +8,16 @@ function ABMProduct(props) {
     const product = props.location.data
     const[data, setData] = useState(
         {
-            'name': product && product.name || '',
-            'price': product && product.price || '',
-            'sku': product && product.sku || '',
-            'image': product && product.image || '',
-            'details': product && product.details || '',
-            'description': product && product.description || '',
-            'available': product && product.available || 0
+            'name': product && product.name,
+            'price': product && product.price,
+            'sku': product && product.sku,
+            'image': product && product.image,
+            'details': product && product.details,
+            'description': product && product.description,
+            'available': product && product.available
         }
     )
-    const[isCreate, setIsCreate] = useState(productId == null)
+    const isCreate = productId == null
     const history = useHistory()
     const imgStyle = {
         width: '200px'
@@ -67,7 +66,10 @@ function ABMProduct(props) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <img style={imgStyle} src={data.image}/>
+            {
+                data.image &&
+                <img style={imgStyle} src={data.image} alt="product"/>
+            }
             <div>
                 <label>Nombre</label>
                 <input type="text" name="name" value={data.name} onChange={handleChange}></input>
