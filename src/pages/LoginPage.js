@@ -1,10 +1,15 @@
 import {useState} from 'react'
 import FormItem from '../components/forms/FormItem'
 import {handleFormItemChange} from '../components/forms/helpers/UpadteItemValueState'
-import {Link} from "react-router-dom"
+import {getItemByLabel} from '..//components/forms/helpers/GetItemByLabel'
+import {Link, useHistory} from "react-router-dom"
+import firebase from '../config/firebase'
+import ButtonWithLoading from "../components/forms/ButtonWithLoading"
+import {Container, Row} from 'react-bootstrap'
 
 function Login() {
 
+    const [loading, setLoading] = useState(false)
     const [formItems, setFormItems] = useState([
         {
             'label': 'Email',
@@ -19,6 +24,8 @@ function Login() {
         }
     ])
 
+    const history = useHistory()
+
     const handleChange = (label, newValue) => {
         const updatedForm = handleFormItemChange(formItems, label, newValue)
         setFormItems(updatedForm)
@@ -26,21 +33,38 @@ function Login() {
 
     const login = (event) => {
         event.preventDefault()
-        console.log(formItems)
-        alert("You logged in")
+        setLoading(true)
+        const email = getItemByLabel(formItems, 'Email')
+        const pass = getItemByLabel(formItems, 'Password')
+
+        firebase.auth.signInWithEmailAndPassword(email, pass)
+        .then(data => {
+            console.log("Log in", data)
+            history.push('/')
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert("Error: " + error.message)
+        })
+
     }
 
     return (
-        <form>
-            <h2>Login</h2>
-            <h4>Welcome Back!</h4>
+        <Container>
+            <Row className="justify-content-md-center">
+                <form onSubmit={login}>
+                    <h2>Login</h2>
+                    <h4>Welcome Back!</h4>
 
-            {formItems.map(item => <FormItem itemProperties={item} onChangeHandler={handleChange}/>)}
+                    {formItems.map(item => <FormItem itemProperties={item} onChangeHandler={handleChange}/>)}
 
-            <button onClick={login}>Log In</button>
+                    <ButtonWithLoading loading={loading}>Log In</ButtonWithLoading>
 
-            <p><Link to="/register">Register here!</Link></p>
-        </form>
+                    <p><Link to="/register">Register here!</Link></p>
+                </form>
+            </Row>
+        </Container>
     )
 }
 

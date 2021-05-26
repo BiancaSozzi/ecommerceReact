@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import  Product from '../components/products/Product';
 import {getProducts} from '../services/ProductsService';
+import { Container, Row} from 'react-bootstrap';
 
 function Home() {
 
@@ -9,20 +10,24 @@ function Home() {
 
     useEffect(() => {
         getProducts()
-        .then(data => {
-            setProducts(data.data)
+        .then(querySnapshot => {
+            setProducts(querySnapshot.docs)
             setLoading(false)
         })
     }, [])
 
     return (
-        <div>
-            {
-                loading &&
-                <p>Loading ...</p>
-            }
-            {productsList.map(product => <Product product={product}/>)}
-        </div>
+        <Container>
+            <Row className="justify-content-md-center">
+                <div>
+                    {
+                        loading &&
+                        <p>Loading ...</p>
+                    }
+                    {productsList.map(product => <Product product={product.data()} id={product.id}/>)}
+                </div>
+            </Row>
+        </Container>
     )
 }
 

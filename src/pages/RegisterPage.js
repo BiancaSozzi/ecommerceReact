@@ -1,10 +1,16 @@
 import {useState} from 'react'
 import FormItem from '../components/forms/FormItem'
 import {handleFormItemChange} from '../components/forms/helpers/UpadteItemValueState'
+import {getItemByLabel} from '..//components/forms/helpers/GetItemByLabel'
 import firebase from '../config/firebase'
+import ButtonWithLoading from "../components/forms/ButtonWithLoading"
+import {Container, Row} from 'react-bootstrap'
+import {useHistory} from "react-router-dom"
 
 function Register() {
 
+    const [loading, setLoading] = useState(false)
+    const history = useHistory()
     const [formItems, setFormItems] = useState([
         {
             'label': 'Nombre',
@@ -47,47 +53,53 @@ function Register() {
         setFormItems(updatedForm)
     }
 
-    const getItemByLabel = (label) => {
-        return formItems.filter(item => item.label === label)[0].value
-    }
-
     const register = (event) => {
         event.preventDefault()
-        const email = getItemByLabel('Email')
-        const password = getItemByLabel('Password')
+        setLoading(true)
+        const email = getItemByLabel(formItems, 'Email')
+        const password = getItemByLabel(formItems, 'Password')
 
         firebase.auth.createUserWithEmailAndPassword(email, password)
         .then(data => {
             firebase.db.collection("users").add({
-                name: getItemByLabel('Nombre'),
-                lastName: getItemByLabel('Apellido'),
+                name: getItemByLabel(formItems, 'Nombre'),
+                lastName: getItemByLabel(formItems, 'Apellido'),
                 email: email,
-                phone: getItemByLabel('Telefono'),
+                phone: getItemByLabel(formItems, 'Telefono'),
                 userId: data.user.uid
             })
             .then(data => {
+                alert("Te has registrado correctamente")
+                setLoading(false)
+                history.push('/login')
                 console.log(data)
             })
             .catch(error => {
+                setLoading(false)
                 console.log("Error: ", error)
             })
         })
         .catch(error => {
             console.log("Error: ", error)
+            setLoading(false)
             alert("Error: " + error.message)
         })
 
     }
 
     return (
-        <form>
-            <h2>Register</h2>
-            <h4>Create your account!</h4>
+        <Container>
+            <Row className="justify-content-md-center">
+                <form onSubmit={register}>
+                    <h2>Register</h2>
+                    <h4>Create your account!</h4>
 
-            {formItems.map(item => <FormItem itemProperties={item} onChangeHandler={handleChange} />)}
+                    {formItems.map(item => <FormItem itemProperties={item} onChangeHandler={handleChange} />)}
 
-            <button onClick={register}>Register</button>
-        </form>
+                    <ButtonWithLoading loading={loading}>Register</ButtonWithLoading>
+                </form>
+            </Row>
+        </Container>
     )
 }
 

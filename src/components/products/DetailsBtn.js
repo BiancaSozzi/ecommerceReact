@@ -1,3 +1,4 @@
+import { Button } from 'react-bootstrap';
 function DetailsBtn() {
 
     const marginStyle = {
@@ -6,7 +7,7 @@ function DetailsBtn() {
 
     return (
         <div>
-            <button style={marginStyle}> More details </button>
+            <Button style={marginStyle}> More details </Button>
         </div>
     )
 }

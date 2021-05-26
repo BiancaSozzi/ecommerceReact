@@ -1,4 +1,5 @@
 import {useState} from "react"
+import { Button } from 'react-bootstrap';
 
 function Buy(props) {
     const [showSuccessLabel, setSuccess] = useState(false);
@@ -18,7 +19,7 @@ function Buy(props) {
                     <label style={errorStyle}> Lo sentimos! No hay mas stock</label>
                 }
             </div>
-            <button disabled={props.qtyAvailable < 1} onClick={buyProduct}>Buy this product! </button>
+            <Button disabled={props.qtyAvailable < 1} onClick={buyProduct}>Buy this product! </Button>
             <div>
                 {
                     showSuccessLabel &&

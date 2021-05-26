@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Property from './Property'
 import Buy from './Buy'
+import {updateProduct} from '../../services/ProductsService'
 
 function ProductDetails(props) {
 
@@ -17,9 +18,12 @@ function ProductDetails(props) {
     const [qtyAvailable, setQtyAvailable] = useState(props.product.available)
 
     function buyProduct() {
-        if (qtyAvailable > 0) {
+        const product = props.product
+        product.available = qtyAvailable - 1
+        updateProduct(props.productId, product)
+        .then(doc => {
             setQtyAvailable(qtyAvailable - 1)
-        }
+        })
     }
 
     return (

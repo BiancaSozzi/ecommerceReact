@@ -5,7 +5,7 @@ function Product(props) {
     return (
         <div>
             <label>{props.product.name}</label>
-            <Link to={"/products/" + props.product.id}><DetailsBtn/></Link>
+            <Link to={"/products/" + props.id}><DetailsBtn/></Link>
         </div>
     )
 }
