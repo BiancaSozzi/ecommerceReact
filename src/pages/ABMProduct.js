@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {createProduct, updateProduct, deleteProduct} from '../services/ProductsService'
 import {useHistory} from "react-router-dom"
+import ButtonWithLoading from "../components/forms/ButtonWithLoading"
 
 function ABMProduct(props) {
 
@@ -11,7 +12,7 @@ function ABMProduct(props) {
             'name': product && product.name,
             'price': product && product.price,
             'sku': product && product.sku,
-            'image': product && product.image,
+            'image': product && product.image || '',
             'details': product && product.details,
             'description': product && product.description,
             'available': product && product.available
@@ -98,10 +99,10 @@ function ABMProduct(props) {
                 <label>Disponible</label>
                 <input type="number" name="available" value={data.available} onChange={handleChange}></input>
             </div>
-            <input type="submit" value="Guardar"></input>
+            <ButtonWithLoading type="submit">Guardar</ButtonWithLoading>
             {
                 !isCreate &&
-                <button onClick={handleDelete}>Eliminar</button>
+                <ButtonWithLoading onClick={handleDelete}>Eliminar</ButtonWithLoading>
             }
 
         </form>

@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom"
-import DetailsBtn from './DetailsBtn'
+import RegularButton from '../../components/button/Button'
 
 function Product(props) {
     return (
         <div>
             <label>{props.product.name}</label>
-            <Link to={"/products/" + props.id}><DetailsBtn/></Link>
+            <Link to={"/products/" + props.id}><RegularButton>More details</RegularButton></Link>
         </div>
     )
 }

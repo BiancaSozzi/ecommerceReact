@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import Property from './Property'
-import Buy from './Buy'
+import BuyButton from '../../components/button/BuyButton'
 import {updateProduct} from '../../services/ProductsService'
 
 function ProductDetails(props) {
@@ -37,7 +37,7 @@ function ProductDetails(props) {
             </div>
 
             <label style={fontStyles}>Available: </label> {qtyAvailable}
-            <Buy handler={buyProduct} qtyAvailable={qtyAvailable}/>
+            <BuyButton handler={buyProduct} qtyAvailable={qtyAvailable}/>
         </div>
     )
 }

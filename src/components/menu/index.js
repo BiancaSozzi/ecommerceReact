@@ -1,4 +1,3 @@
-import {Link} from "react-router-dom"
 import {Navbar, Nav} from 'react-bootstrap'
 import Option from "./Option"
 

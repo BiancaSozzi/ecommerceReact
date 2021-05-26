@@ -1,7 +1,7 @@
 import {useState} from "react"
 import { Button } from 'react-bootstrap';
 
-function Buy(props) {
+function BuyButton(props) {
     const [showSuccessLabel, setSuccess] = useState(false);
     const successStyle = {'color': 'green'};
     const errorStyle = {'color': 'red'};
@@ -31,4 +31,4 @@ function Buy(props) {
 
 }
 
-export default Buy
+export default BuyButton

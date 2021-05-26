@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom"
-import {Navbar,Nav} from 'react-bootstrap'
+import {Nav} from 'react-bootstrap'
 
 function Option(props){
     return(
