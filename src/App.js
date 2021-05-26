@@ -3,7 +3,7 @@ import './App.css';
 import Details from './pages/DetailsPage'
 import Home from './pages/HomePage'
 import Login from './pages/LoginPage'
-import Menu from './components/Menu'
+import Menu from './components/menu/index'
 import Register from './pages/RegisterPage'
 import ABMProduct from './pages/ABMProduct'
 
