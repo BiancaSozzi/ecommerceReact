@@ -6,7 +6,8 @@ function ButtonWithLoading(props){
         <Button
             type={type || "submit"}
             variant={variant || "primary"}
-            disabled={loading}>
+            disabled={loading}
+            size="sm">
                 {
                     loading &&
                     <Spinner animation="border" size="sm" />

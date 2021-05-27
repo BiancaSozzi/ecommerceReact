@@ -5,7 +5,8 @@ function RegularButton(props) {
     return (
         <Button
         variant={variant || "primary"}
-        onClick={handler}>
+        onClick={handler}
+        size="sm">
             {props.children}
         </Button>
     )

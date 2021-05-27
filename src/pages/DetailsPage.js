@@ -3,6 +3,7 @@ import ProductDetails from '../components/products/ProductDetails'
 import RegularButton from "../components/button/Button"
 import {getProduct} from '../services/ProductsService'
 import {useHistory} from "react-router-dom"
+import { Container, Row, Col} from 'react-bootstrap';
 
 function Details(props) {
 
@@ -27,17 +28,22 @@ function Details(props) {
     }
 
     return (
-        <div>
-            {
-                loading &&
-                <p>Loading ...</p>
-            }
-            {
-                !loading &&
-                <ProductDetails product={product} productId={productId}/>
-            }
-            <RegularButton handler={editProduct}>Edit Product</RegularButton>
-        </div>
+        <Container>
+            <Row>
+                <RegularButton handler={editProduct}>Edit Product</RegularButton>
+            </Row>
+            <Row className="justify-content-md-center">
+                {
+                    loading &&
+                    <p>Loading ...</p>
+                }
+                {
+                    !loading &&
+                    <ProductDetails product={product} productId={productId}/>
+                }
+            </Row>
+
+        </Container>
     )
 
 }

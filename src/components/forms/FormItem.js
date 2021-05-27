@@ -1,3 +1,5 @@
+import {Form} from 'react-bootstrap'
+
 function FormItem(props) {
     const styles = {
         margin: '10px'
@@ -10,10 +12,10 @@ function FormItem(props) {
     }
 
     return (
-        <div style={styles}>
-            <label>{props.itemProperties.label} </label>
-            <input type={props.itemProperties.type} name={props.itemProperties.label} placeholder={props.itemProperties.placeholder} onChange={onChange}/>
-        </div>
+        <Form.Group style={styles}>
+            <Form.Label>{props.itemProperties.label} </Form.Label>
+            <Form.Control type={props.itemProperties.type} name={props.itemProperties.label} placeholder={props.itemProperties.placeholder} onChange={onChange}/>
+        </Form.Group>
     )
 }
 

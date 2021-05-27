@@ -3,8 +3,7 @@ import Option from "./Option"
 
 function Menu() {
     return(
-        <div>
-
+        <div style={{marginBottom: '20px'}}>
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand>Eccomerce</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

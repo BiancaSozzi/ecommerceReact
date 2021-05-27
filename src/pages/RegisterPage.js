@@ -4,7 +4,7 @@ import {handleFormItemChange} from '../components/forms/helpers/UpadteItemValueS
 import {getItemByLabel} from '..//components/forms/helpers/GetItemByLabel'
 import firebase from '../config/firebase'
 import ButtonWithLoading from "../components/forms/ButtonWithLoading"
-import {Container, Row} from 'react-bootstrap'
+import {Container, Row, Form} from 'react-bootstrap'
 import {useHistory} from "react-router-dom"
 
 function Register() {
@@ -90,14 +90,14 @@ function Register() {
     return (
         <Container>
             <Row className="justify-content-md-center">
-                <form onSubmit={register}>
+                <Form onSubmit={register}>
                     <h2>Register</h2>
                     <h4>Create your account!</h4>
 
                     {formItems.map(item => <FormItem itemProperties={item} onChangeHandler={handleChange} />)}
 
                     <ButtonWithLoading loading={loading}>Register</ButtonWithLoading>
-                </form>
+                </Form>
             </Row>
         </Container>
     )

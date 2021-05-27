@@ -2,6 +2,8 @@ import { useState } from 'react';
 import {createProduct, updateProduct, deleteProduct} from '../services/ProductsService'
 import {useHistory} from "react-router-dom"
 import ButtonWithLoading from "../components/forms/ButtonWithLoading"
+import RegularButton from "../components/button/Button"
+import { Container, Col, Row, Form} from 'react-bootstrap'
 
 function ABMProduct(props) {
 
@@ -66,46 +68,55 @@ function ABMProduct(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {
-                data.image &&
-                <img style={imgStyle} src={data.image} alt="product"/>
-            }
-            <div>
-                <label>Nombre</label>
-                <input type="text" name="name" value={data.name} onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>Precio</label>
-                <input type="number" name="price" value={data.price} onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>SKU</label>
-                <input type="text" name="sku" value={data.sku} onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>Imagen</label>
-                <input type="text" name="image" value={data.image} onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>Detalles</label>
-                <input type="text" name="details" value={data.details} onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>Descripcion</label>
-                <input type="text" name="description" value={data.description} onChange={handleChange}></input>
-            </div>
-            <div>
-                <label>Disponible</label>
-                <input type="number" name="available" value={data.available} onChange={handleChange}></input>
-            </div>
-            <ButtonWithLoading type="submit">Guardar</ButtonWithLoading>
-            {
-                !isCreate &&
-                <ButtonWithLoading onClick={handleDelete}>Eliminar</ButtonWithLoading>
-            }
-
-        </form>
+        <Container>
+            <Row className="justify-content-md-center">
+                <Form onSubmit={handleSubmit}>
+                    {
+                        data.image &&
+                        <img style={imgStyle} src={data.image} alt="product"/>
+                    }
+                    <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control type="text" name="name" value={data.name} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Precio</Form.Label>
+                        <Form.Control type="number" name="price" value={data.price} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>SKU</Form.Label>
+                        <Form.Control type="text" name="sku" value={data.sku} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Imagen</Form.Label>
+                        <Form.Control type="text" name="image" value={data.image} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Detalles</Form.Label>
+                        <Form.Control type="text" name="details" value={data.details} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Descripcion</Form.Label>
+                        <Form.Control type="text" name="description" value={data.description} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Disponible</Form.Label>
+                        <Form.Control type="number" name="available" value={data.available} onChange={handleChange}></Form.Control>
+                    </Form.Group>
+                    <Row>
+                        <Col>
+                            <ButtonWithLoading type="submit">Guardar</ButtonWithLoading>
+                        </Col>
+                        <Col>
+                            {
+                                !isCreate &&
+                                <RegularButton handler={handleDelete}>Eliminar</RegularButton>
+                            }
+                        </Col>
+                    </Row>
+                </Form>
+            </Row>
+        </Container>
     )
 }
 

@@ -19,7 +19,7 @@ function BuyButton(props) {
                     <label style={errorStyle}> Lo sentimos! No hay mas stock</label>
                 }
             </div>
-            <Button disabled={props.qtyAvailable < 1} onClick={buyProduct}>Buy this product! </Button>
+            <Button disabled={props.qtyAvailable < 1} onClick={buyProduct} size="sm">Buy this product! </Button>
             <div>
                 {
                     showSuccessLabel &&
